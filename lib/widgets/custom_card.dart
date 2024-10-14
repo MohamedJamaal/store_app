@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/models/product_model.dart';
 
 class CustomCard extends StatelessWidget {
-  const CustomCard({
+  CustomCard({
+    required this.product,
     super.key,
   });
+
+  ProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -19,35 +23,35 @@ class CustomCard extends StatelessWidget {
               offset: const Offset(10, 10),
             ),
           ]),
-          child: const Card(
+          child: Card(
             elevation: 10,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hand Bag LV',
-                    style: TextStyle(
+                    product.title.substring(0, 8),
+                    style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 16,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 3,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        r'$255',
-                        style: TextStyle(
+                        r'$' ' ${product.price.toString()}',
+                        style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 16,
                         ),
                       ),
-                      Icon(
+                      const Icon(
                         Icons.favorite,
                         color: Colors.red,
                       ),
@@ -62,8 +66,9 @@ class CustomCard extends StatelessWidget {
           right: 32,
           bottom: 75,
           child: Image.network(
-            'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+            product.image,
             height: 100,
+            width: 100,
           ),
         ),
       ],
